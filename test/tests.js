@@ -1,6 +1,10 @@
 var marked = require('../lib/marked.js');
 module.exports = { 
   test_add_rule_to_lexer: function (test) {
+    var renderer = new marked.Renderer();
+    renderer.newblock = function (token) {
+      return 'dollardollar';
+    }
     var options = {
       'renderer': renderer,
       'extra_block_rules': {
@@ -17,11 +21,6 @@ module.exports = {
     };
     var lexer = new marked.Lexer(options);
     test.equals(lexer.rules.newblock.toString(), '/aa/');
-
-    var renderer = new marked.Renderer();
-    renderer.newblock = function (text, level) {
-      return 'dollardollar'
-    }
 
     marked.setOptions(options);
     var tokens = lexer.lex('aa');
