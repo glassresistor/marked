@@ -5,7 +5,7 @@ module.exports = {
     renderer.newblock = function (that) {
       return that.token.text;
     }
-    //Looks for !!(slug)
+    //Looks for !![slug]
     var pound_pound = /^!!\[((?:\[[^\]]*\]|[^\[\]]|\](?=[^\[]*\]))*)\]/;
     var options = {
       'renderer': renderer,
